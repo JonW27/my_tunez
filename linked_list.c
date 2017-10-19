@@ -38,9 +38,9 @@ struct song_node * insert_ordered(struct song_node *list, char *name, char *arti
   return new;
 }
 
-struct song_node * find_song(struct song_node *list, char *name){
+struct song_node * find_song(struct song_node *list, char *name, char *artist){
   while (list){
-    if (strcmp(list->name, name) == 0){
+    if (strcmp(list->name, name) == 0 && strcmp(list->artist, artist) == 0){
       return list;
     }
     list = list->next;
@@ -74,7 +74,19 @@ struct song_node * random_song(struct song_node *list){
   return list;
 }
 
-int remove_node(struct song_node *list, char *
+int remove_song(struct song_node *list, char *name, char *artist){
+  if (!find_song(list, name, artist)){
+    return -1;
+  }
+  while ( strcmp(name, list->name) > 0 ){
+    if( strcmp(name, list->next->name) == 0 ){
+      list->next = list->next->next;
+      return 1;
+    }
+    list = list->next;
+  }
+  return 0; //should not get to this point
+}
 
 struct song_node * free_list(struct song_node *list){
   while (list){

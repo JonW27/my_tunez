@@ -31,12 +31,12 @@ int main(){
   struct song_node *s3 = insert_ordered(s1, "I Gotta Feeling", "The Black Eyed Peas");
   print_list(s1);
 
-  printf("\nTesting find_song(s1, \"I Gotta Feeling\"):\n");
+  printf("\nTesting find_song(s1, \"I Gotta Feeling\", \"The Black Eyed Peas\"):\n");
   printf("correct: %p\n", s3);
-  printf("mine: %p\n", find_song(s1, "I Gotta Feeling"));
-  printf("Testing find_song(s1, \"test\"):\n");
+  printf("mine: %p\n", find_song(s1, "I Gotta Feeling", "The Black Eyed Peas"));
+  printf("Testing find_song(s1, \"testsong\", \"testartist\"):\n");
   printf("correct: (nil)\n");
-  printf("mine: %p\n", find_song(s1, "test"));
+  printf("mine: %p\n", find_song(s1, "testsong", "testartist"));
 
   struct song_node *imyours = insert_ordered(s1, "I'm Yours", "Alessia Cara");
   print_list(s1);
@@ -48,6 +48,23 @@ int main(){
   printf("\nTesting random_song(s1):\n");
   printf("%s\n", random_song(s1)->name);
 
+  printf("\nTesting remove_song(s1, \"I'm Yours\", \"Alessia Cara\"):\n");
+  printf("old list:\n");
+  print_list(s1);
+  printf("=====================================\n");
+  printf("code %d: 1 = removed, -1 = not found\n", remove_song(s1, "I'm Yours", "Alessia Cara"));
+  printf("=====================================\n");
+  printf("new list:\n");
+  print_list(s1);
+  printf("Testing remove_song(s1, \"testsong\", \"testartist\"):\n");
+  printf("old list:\n");
+  print_list(s1);
+  printf("=====================================\n");
+  printf("code %d: 1 = removed, -1 = not found\n", remove_song(s1, "testsong", "testartist"));
+  printf("=====================================\n");
+  printf("new list:\n");
+  print_list(s1);
+  
   printf("\nTesting free_list(s1):\n");
   printf("list = %p\n", free_list(s1));
   
