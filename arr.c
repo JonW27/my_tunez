@@ -8,12 +8,14 @@ typedef enum { false, true } bool;
 struct song_node * library[26];
 
 void add_song(struct song_node * node){
-    int i = tolower(node->artist[0])-97;
+    int i = tolower(node->artist[0])-97; // use ascii value to get slot
     if(library[i] == NULL){
-        insert_front(library[i], node->name, node->artist); // use ascii value to get slot
+        
+        library[i] = 
+        insert_front(library[i], node->name, node->artist);
     }
     else{
-        insert_ordered(library[i], node->name, node->artist); // use ascii value to get slot
+        insert_ordered(library[i], node->name, node->artist); 
     }
 }
 
@@ -27,18 +29,7 @@ struct song_node * search_song(char song[], char artist[]){
     }
     return NULL;
 }
-/*struct song_node * search_song(char song[]){
-    int i = 0;
-    for(; i<26; i++){
-        while(library[i]){
-            if(library[i]->name == song){
-                return library[i];
-            }
-            library[i]++;
-        }
-    }
-    return NULL;
-}*/
+
 struct song_node * search_artist(char artist[]){
     struct song_node * corpus = library[artist[0]-97];
     while(corpus){
