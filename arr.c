@@ -61,7 +61,6 @@ void shuffle(struct song_node * library[], int length){ // how many songs
 
 struct node * delete_song(struct song_node * library[], char song[], char artist[]){
     struct song_node * corpus = library[tolower(artist[0])-97];
-    printf("%d", tolower(artist[0])-97);
     remove_song(corpus, song, artist);
     return NULL;
 }
