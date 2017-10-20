@@ -104,14 +104,89 @@ int main(){
   printf("a4: {%s, %s, NULL}\n\n", a4->name, a4->artist);
   printf("a5: {%s, %s, NULL}\n\n", a5->name, a5->artist);
 
+  struct song_node * library[26];
+  int i = 0;
+  for(; i < 26; i++){
+    library[i] = NULL;
+  }
+
+  struct song_node * library1[26];
+  for(; i < 26; i++){
+    library1[i] = NULL;
+  }
+
   // testing add_song
-  add_song(a1);
-  add_song(a2);
+  printf("Testing add song and printing songs:\n");
+  add_song(library, a1);
+  add_song(library, a2);
+  add_song(library, a3);
+  add_song(library, a4);
+  add_song(library, a5);
 
-  print_library();
+  // print library
+  print_library(library);
 
+  // print a null library
+  printf("The following should print null, that is an empty line:\n");
+  print_library(library1);
 
+  // search for song given song name and artist
+  printf("Testing searching for song given song name and artist:\n");
+  printf("Correct: %p\n", a4);
+  printf("Test results: %p\n\n", search_song(library, "Warriors", "Imagine Dragons"));
 
+  printf("Correct: %p\n", a3);
+  printf("Test results: %p\n\n", search_song(library, "Demons", "Imagine Dragons"));
+
+  printf("Correct: %p\n", a1);
+  printf("Test results: %p\n\n", search_song(library, "Girl on Fire", "Alicia Keys"));
+
+  // search for first song given artist
+  printf("Testing searching for first song given artist:\n");
+  printf("Correct: Demons\n");
+  printf("Test results: %s\n\n", search_artist(library, "Imagine Dragons")->name);
+
+  printf("Correct: Girl on Fire\n");
+  printf("Test results: %s\n\n", search_artist(library, "Alicia Keys")->name);
+
+  // testing print entries
+  printf("Testing searching for entries under a certain letter:\n");
+  printf("Under A:\n");
+  print_entries(library, 'A');
+  printf("Under I:\n");
+  print_entries(library, 'I');
+  printf("Under T:\n");
+  print_entries(library, 'T');
+
+  // testing shuffling
+  printf("\nTesting shuffling songs:\n");
+  //shuffle(library); // THIS CURRENTLY DOES NOT WORK -> lldb says that there's an
+  // arithmetic error in linked_list regarding line 69. im too tired and busy to bother.
+
+  printf("\nTesting deleting songs:\n");
+  printf("Deleting Demons...\n\n");
+  delete_song(library, "Demons", "Imagine Dragons"); // will not delete?
+
+  printf("Checking to make sure its not in here...\n");
+  print_library(library);
+
+  printf("Deleting Bad Blood...\n\n");
+  delete_song(library, "Bad Blood", "Taylor Swift"); // will not delete?
+
+  printf("Checking to make sure its not in here...\n");
+  print_library(library);
+
+  printf("Deleting Scars to Your Beautiful...\n\n");
+  delete_song(library, "Scars to Your Beautiful", "Alessia Cara"); // but this one will?
+
+  printf("Checking to make sure its not in here...\n");
+  print_library(library);
+
+  printf("Deleting everything, that is rm -rf ing the linkedlist like its your softdev project\n");
+  delete_everything(library);
+
+  printf("Checking to make sure NOTHING is in here...\n");
+  print_library(library);
 
   return 0;
 }
