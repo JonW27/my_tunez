@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "linked_list.h"
+#include "arr.h"
 #include <string.h>
 
 //main method
@@ -67,6 +68,50 @@ int main(){
   
   printf("\nTesting free_list(s1):\n");
   printf("list = %p\n", free_list(s1));
+
+  //
+  printf("\n=====================================\n");
+  printf("Testing music library...\n");
+  printf("=====================================\n");
+
+  struct song_node *a1 = (struct song_node *)malloc(sizeof(struct song_node));
+  struct song_node *a2 = (struct song_node *)malloc(sizeof(struct song_node));
+  struct song_node *a3 = (struct song_node *)malloc(sizeof(struct song_node));
+  struct song_node *a4 = (struct song_node *)malloc(sizeof(struct song_node));
+  struct song_node *a5 = (struct song_node *)malloc(sizeof(struct song_node));
   
+  strcpy(a1->name,"Girl on Fire");
+  strcpy(a1->artist,"Alicia Keys");
+  a1->next = a2;
+  strcpy(a2->name,"Scars to Your Beautiful");
+  strcpy(a2->artist,"Alessia Cara");
+  a2->next = NULL;
+  strcpy(a3->name,"Demons");
+  strcpy(a3->artist,"Imagine Dragons");
+  a3->next = a4;
+  strcpy(a4->name,"Warriors");
+  strcpy(a4->artist,"Imagine Dragons");
+  a4->next = NULL;
+  strcpy(a5->name,"Bad Blood");
+  strcpy(a5->artist,"Taylor Swift");
+  a5->next = NULL;
+
+
+
+  printf("a1: {%s, %s, a2}\n", a1->name, a1->artist);
+  printf("a2: {%s, %s, NULL}\n\n", a2->name, a2->artist);
+  printf("a3: {%s, %s, a4}\n", a3->name, a3->artist);
+  printf("a4: {%s, %s, NULL}\n\n", a4->name, a4->artist);
+  printf("a5: {%s, %s, NULL}\n\n", a5->name, a5->artist);
+
+  // testing add_song
+  add_song(a1);
+  add_song(a2);
+
+  print_library();
+
+
+
+
   return 0;
 }

@@ -1,2 +1,4 @@
 *.o
 *.c~
+linked_list
+*.dYSM

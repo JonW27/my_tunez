@@ -1,4 +1,4 @@
-all: linked_list.o main.o
+all: linked_list.o main.o arr.o
 	gcc -o linked_list linked_list.o main.o
 
 work06.o: linked_list.c linked_list.h
