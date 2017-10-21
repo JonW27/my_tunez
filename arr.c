@@ -52,16 +52,22 @@ void print_library(struct song_node * library[]){
 void shuffle(struct song_node * library[], int length){ // how many songs
     int i = 0;
     srand(time(NULL));
-    for(; i < length; i++){
-        int r = rand() % 26;
-        struct song_node * tmp = random_song(library[r]);
-        printf("%s by %s", tmp->name, tmp->artist);
+    int r;
+    while(i < length){
+        r = rand() % 26;
+        if(library[r]){
+            struct song_node * tmp = random_song(library[r]);
+            printf("%s by %s\n", tmp->name, tmp->artist);
+            i++;
+        }
     }
 }
 
 struct node * delete_song(struct song_node * library[], char song[], char artist[]){
     struct song_node * corpus = library[tolower(artist[0])-97];
-    remove_song(corpus, song, artist);
+    if(remove_song(corpus, song, artist) == 0){
+        printf("Yes, it reached 0. And it threw an error\n");
+    }
     return NULL;
 }
 

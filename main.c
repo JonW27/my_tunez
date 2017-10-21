@@ -123,6 +123,7 @@ int main(){
   add_song(library, a4);
   add_song(library, a5);
 
+  /*
   // print library
   print_library(library);
 
@@ -159,9 +160,11 @@ int main(){
   print_entries(library, 'T');
 
   // testing shuffling
+  */
   printf("\nTesting shuffling songs:\n");
-  //shuffle(library); // THIS CURRENTLY DOES NOT WORK -> lldb says that there's an
+  shuffle(library,3); // THIS CURRENTLY DOES NOT WORK -> lldb says that there's an
   // arithmetic error in linked_list regarding line 69. im too tired and busy to bother.
+
 
   printf("\nTesting deleting songs:\n");
   printf("Deleting Demons...\n\n");
@@ -176,14 +179,20 @@ int main(){
   printf("Checking to make sure its not in here...\n");
   print_library(library);
 
-  printf("Deleting Scars to Your Beautiful...\n\n");
+  printf("Deleting Scars to Your Beautiful...\n");
   delete_song(library, "Scars to Your Beautiful", "Alessia Cara"); // but this one will?
 
   printf("Checking to make sure its not in here...\n");
   print_library(library);
 
+  printf("Deleting Girl on Fire...\n\n");
+  delete_song(library, "Girl on Fire", "Alicia Keys"); // but this one will?
+
+  printf("Checking to make sure its not in here...\n");
+  print_library(library);
+
   printf("Deleting everything, that is rm -rf ing the linkedlist like its your softdev project\n");
-  delete_everything(library);
+  //delete_everything(library);
 
   printf("Checking to make sure NOTHING is in here...\n");
   print_library(library);

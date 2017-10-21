@@ -79,6 +79,7 @@ int remove_song(struct song_node *list, char *name, char *artist){
     return -1;
   }
   while ( strcmp(name, list->name) > 0 ){
+    printf("strcmp: %d", strcmp(name, list->name));
     if( strcmp(name, list->next->name) == 0 ){
       list->next = list->next->next;
       return 1;
